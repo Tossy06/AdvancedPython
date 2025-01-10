@@ -14,6 +14,6 @@ saludo_modificado()
 
 @decorador
 def saludo():
-    print('Hola,, como estas')
+    print('Hola, como estas')
 
 saludo()
