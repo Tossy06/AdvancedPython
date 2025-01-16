@@ -6,7 +6,12 @@
     <title>Document</title>
 </head>
 <body>
+
+    {% extends 'base.html' %}
+    {% load static %}
     <h1>{{title}}</h1>
+    <img src="{% static 'inventario (1).png' %}" >
+    {% block content %}
     <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis architecto dolorem provident atque, minus quaerat blanditiis perferendis vero hic odit minima dicta molestias cumque enim vitae temporibus. Iste, sequi animi.</h2>
-</body>
+    {% endblock %}
 </html>

@@ -9,18 +9,12 @@
     {% extends 'base.html' %}
 
     {% block content %}
-    <h1>Projects:</h1>
-    {% for project in projects %}
-
-    <h1>{{project.name}}</h1>
-    <button>
-        Delete
-    </button>
-    <button>
-        Update
-    </button>
-
-    {% endfor %}
+    <h1>Create Project</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{form}}
+        <button>save</button>
+    </form>
     {% endblock %}
 </body>
 </html>
