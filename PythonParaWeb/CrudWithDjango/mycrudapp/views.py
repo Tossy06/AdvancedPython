@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Users, Notas
+from .models import Users, Mynotes
 from django.contrib import messages 
 from django.contrib.auth.hashers import check_password, make_password
 
@@ -51,22 +51,40 @@ def login (request):
 def home(request):
     user_name = request.GET.get('user_name')
 
-    if request.method == 'POST':
-        title = request.POST.get('title')
-        content = request.POST.get('content')
-
+    if user_name:
+        # Guardamos el 'user_name' en la sesión si se recibe en GET
+        request.session['user_name'] = user_name
+    else:
+        # Si no está en la URL, lo obtenemos de la sesión
+        user_name = request.session.get('user_name')
+    
+    if user_name:
         try:
             user = Users.objects.get(user_name = user_name)
-            new_note = Notas(title = title, content = content, user= user)
-            new_note.save()
-            messages.success(request, 'Nota agregada con existo')
-            print('Nota agregada')
-        except Exception as e:
-            messages.error(request, f'Error al guardar la nota: {e}')
-            print('No se pudo agregar')
-        return redirect('notes')
-
-    return render(request, 'home.html', {'user_name': user_name})
+        except Users.DoesNotExist:
+            messages.error(request, 'El usuario no existe.')
+            return redirect('register-login')
+        
+        if request.method == 'POST':
+            title = request.POST.get('title')
+            content = request.POST.get('content')
+            
+            try:
+                new_note = Mynotes(title=title, content=content, user_name=user)
+                new_note.save()
+                messages.success(request, 'Nota agregada con éxito')
+                return redirect('notes')
+            
+            except Exception as e:
+                messages.error(request, f'Error al guardar la nota: {e}')
+                print(f'Error: {e}')
+            
+        
+        return render(request, 'home.html', {'user_name': user_name})
+    else:
+        messages.error(request, 'El nombre de usuario no está presente.')
+        print('Te devolvio')
+        return redirect('register-login')
 
 def Notes(request):
     return render( request, 'notes.html')

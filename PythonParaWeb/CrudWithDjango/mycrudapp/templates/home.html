@@ -10,10 +10,11 @@
 
 <body>
     
-    <div class="content">
+    <div class="content" >
         <h1>Bienvenid@ {{ user_name }}</h1>
-        <form method="POST">  
+        <form action="{% url 'home' %}" method="POST">  
             {% csrf_token %}
+            <input type="hidden" name="user_name" value={{user_name}}>
             <textarea class="title-area" name="title" id="" placeholder="Titulo" required></textarea>
             <textarea class="text-area" name="content" id="", placeholder="Escribe una nota" required></textarea>
             <button type="submit">Guardar</button>
