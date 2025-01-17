@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login & Regisration</title>
+  </head>
+
+  {% extends 'base.html' %}
+  {% load static %}
+  
+  <body>
+    {% block content %}
+    <div class="hero">
+      <div class="form-box">
+        <div class="button-box">
+          <div id="btn"></div>
+          <button type="button" class="toggle-btn" onclick="login()">
+            Login
+          </button>
+          <button type="button" class="toggle-btn" onclick="register()">
+            Register
+          </button>
+        </div>
+        <form id="login" class="input-group">
+          
+          <input
+            type="text"
+            class="input-field"
+            placeholder=" Username "
+            required
+          />
+          <input
+            type="text"
+            class="input-field"
+            placeholder=" User Password "
+            required
+          />
+          
+            <input type="checkbox" class="check-box" /><span
+            >Remember Password</span
+          >
+          <button type="submit" class="submit-btn">Log in</button>
+        </form>
+        <form id="Register" class="input-group" method="POST" action="{% url 'register-login' %}">
+            {% csrf_token %}
+            <input
+              type="text"
+              class="input-field"
+              placeholder="Username"
+              name="user_name"
+              required
+            />
+            <input
+              type="email"
+              class="input-field"
+              placeholder="Email"
+              name="email"
+              required
+            />
+            <input
+              type="password"
+              class="input-field"
+              placeholder="Password"
+              name="password"
+              required
+            />
+            <input type="checkbox" class="check-box" name="terms" required />
+            <span>Acepto los términos y condiciones</span>
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+  
+</html>
