@@ -4,7 +4,7 @@
     <title>Login & Regisration</title>
   </head>
 
-  {% extends 'base.html' %}
+  {% extends 'layouts/base.html' %}
   {% load static %}
   
   <body>
@@ -20,18 +20,20 @@
             Register
           </button>
         </div>
-        <form id="login" class="input-group">
+        <form id="login" class="input-group" action="{% url 'home' %}">
           
           <input
             type="text"
             class="input-field"
             placeholder=" Username "
+            name = 'user_name'
             required
           />
           <input
-            type="text"
+            type="password"
             class="input-field"
             placeholder=" User Password "
+            name = 'password'
             required
           />
           

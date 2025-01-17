@@ -15,3 +15,12 @@ class Users(models.Model):
 
     def __str__(self):
         return self.user_name
+    
+class Notas(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.CharField(max_length=500)
+    user_name = models.ForeignKey(Users, on_delete= models.CASCADE)
+
+
+    def __str__(self):
+        return self.title
