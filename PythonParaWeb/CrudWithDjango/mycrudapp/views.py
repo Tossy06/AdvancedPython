@@ -87,4 +87,12 @@ def home(request):
         return redirect('register-login')
 
 def Notes(request):
-    return render( request, 'notes.html')
+    user_name = request.session.get('user_name')
+    
+    try:
+        user = Users.objects.get(user_name = user_name)
+        notes = Mynotes.objects.filter(user_name = user)
+        return render( request, 'notes.html', {'notes': notes, 'user_name': user_name})
+    
+    except Users.DoesNotExist:
+        messages.error(request, 'El usuario no existe')
