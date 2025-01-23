@@ -15,7 +15,7 @@ html {
 }
 
 .sidebar {
-    background: #1b2631; 
+    background: #000; 
     color: white;
     width: 250px; 
     height: 100vh;
@@ -27,7 +27,7 @@ html {
 
 .header {
     width: 100%;
-    background: #1b2631;
+    background: #000;
     height: 35px;
     padding: 10px;
 }
@@ -80,7 +80,7 @@ li {
 }
 
 .main-content {
-    background: #2c3e50;
+    background: #161616;
     flex: 1; /* Ocupa el espacio restante */
     color: white;
     margin-left: 250px; /* Deja espacio suficiente para el ancho del aside */
@@ -89,11 +89,37 @@ li {
     flex-direction: column;
 }
 
-.form-content{
+form {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    background: black;
+    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+    gap: 10px; /* Espacio entre cada campo */
+    width: 100%; 
+}
+
+form input,
+form textarea {
+    width: 100%; /*para que los campos ocupen todo el ancho del formulario */
+    padding: 10px;
+    font-size: 16px;
+    border: none; 
+    background: transparent;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+}
+
+form textarea {
+    resize: vertical; /* Permite redimensionar solo en vertical */
+    height: 100px; /* Altura inicial */
+}
+
+form input::placeholder,
+form textarea::placeholder {
+    color: white; /* Color para los placeholders */
+    font-style: italic;
+}
+
+.form-content {
+    padding: 20px; /* Espaciado interno para el contenedor del formulario */
 }
 
