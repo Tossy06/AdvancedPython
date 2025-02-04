@@ -2,7 +2,7 @@ import pandas as pd
 import re
 
 # Leer el archivo de texto de WhatsApp
-with open(r"Nombre de tu chat", 'r', encoding='utf-8') as file:
+with open(r"Nombre de chat", 'r', encoding='utf-8') as file:
     lines = file.readlines()
 # Crear un DataFrame vacío para almacenar los datos
 messages = []
